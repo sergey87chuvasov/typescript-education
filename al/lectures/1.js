@@ -40,8 +40,26 @@ const user = {
     surname: 'Che',
     city: 'Minsk',
     age: 35,
+    slills: {
+        dev: true,
+        devops: true,
+    },
 };
 function getFullName2(user) {
     return `${user.firstName} ${user.surname}`;
 }
 console.log(getFullName2(user));
+// МАССИВЫ
+const skills = ['dev', 'coder', 'qa'];
+// Any не желательно использовать
+const skills2 = ['dev', 'coder', 999];
+for (const skill of skills) {
+    console.log(skill.toUpperCase());
+}
+const res2 = skills
+    .filter((s) => s !== 'qa')
+    .map((s) => s + '! ')
+    .reduce((a, b) => a + b);
+console.log(res2); // dev! coder!
+// TUPLES - КОРТЕЖИ - массив ограниченной длинны, где каждый элемент типизирован
+const skill3 = [1, 'Dev'];

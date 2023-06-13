@@ -63,3 +63,42 @@ function getFullName2(user: { firstName: string; surname: string }): string {
 }
 
 console.log(getFullName2(user));
+
+// МАССИВЫ
+const skills: string[] = ['dev', 'coder', 'qa'];
+
+// Any не желательно использовать
+const skills2: any[] = ['dev', 'coder', 999];
+
+for (const skill of skills) {
+  console.log(skill.toUpperCase());
+}
+
+const res2 = skills
+  .filter((s: string) => s !== 'qa')
+  .map((s) => s + '! ')
+  .reduce((a, b) => a + b);
+console.log(res2); // dev! coder!
+
+// TUPLES - КОРТЕЖИ - массив ограниченной длинны, где каждый элемент типизирован
+const skill3: [number, string] = [1, 'Dev'];
+const id = skill3[0];
+const name3 = skill3[1];
+
+// деструктур
+const [newId, skill3Name] = skill3;
+
+// spread
+const skill4: [number, string, ...boolean[]] = [1, 'Dev', true, true, true];
+
+// READONLY - доп. модификатор - говорит нам что что-то не модифицируется
+let a2 = 5;
+a2 = 6;
+
+const skill5: readonly [number, string] = [1, 'Dev'];
+// skill5[0] = 999; error
+
+// alt ver. readonly -  - массив строк
+const skills6: Array<string> = ['qa', 'ux'];
+const skills7: ReadonlyArray<string> = ['qa', 'ux'];
+// skills7.push('sss') - error
