@@ -102,3 +102,38 @@ const skill5: readonly [number, string] = [1, 'Dev'];
 const skills6: Array<string> = ['qa', 'ux'];
 const skills7: ReadonlyArray<string> = ['qa', 'ux'];
 // skills7.push('sss') - error
+
+// ENUMS
+// по умолчанию 0 1 2 - числовые значения - можно поменять и на буквы
+enum StatusCode {
+  SUCCESS = 1,
+  IN_PROCESS,
+  FAILED,
+}
+
+const res6 = {
+  message: 'Платеж успешен',
+  statusCode: StatusCode.SUCCESS,
+};
+
+// 1 - успех
+// 2 - в процессе
+// 3 - откленен
+
+if (res6.statusCode === StatusCode.SUCCESS) {
+}
+
+//
+function compute() {
+  return 3;
+}
+
+enum Roles {
+  ADMIN = 1,
+  USER = compute(),
+}
+
+//
+function test5(x: { ADMIN: number }) {}
+
+test5(Roles);
