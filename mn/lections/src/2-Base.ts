@@ -214,3 +214,18 @@ function welcome(person: [string, string] | string): number | string {
     return person;
   }
 }
+
+// ENUM
+enum ShapeKind {
+  Circle,
+  Square,
+}
+
+const myShape = ShapeKind.Circle;
+// myShape. // что-то похожее на число
+
+enum StatusCode {
+  ERROR = 500,
+  NOT_FOUND = 404,
+  NOT_AUTH = 403,
+}
