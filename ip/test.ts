@@ -123,3 +123,82 @@ logBirthMsg6(isBirthdayData, userName3, ageData);
 const createError6 = (msg: string) => {
   while (true) {} // бесконечный цикл
 };
+
+
+// ТИПЫ NULL и UNDEFINED
+const test5: null = null;
+const test6: any = null; // частный случай any
+
+// ошибки
+// const test7: string = null; // error
+// const test7: number = null; // error
+
+function getRndData() {
+  if (Math.random() < 0.5) {
+    return null;
+  } else {
+    return '   Some data  ';
+  }
+}
+
+const data5 = getRndData();
+const trimData = data5 ? data5.trim() : null;
+
+// und
+const test8: undefined = undefined;
+const test9: any = undefined;
+const test10: string = undefined;
+
+let smth; // any
+
+
+// РЕДДКИЕ ТИПЫ BIGINT И symbol
+let id: symbol = Symbol('id');
+
+const data8 = {
+  [id]: 1
+}
+console.log(data8[id]);
+
+const num1: bigint = 1n;
+const num2: bigint = 2n;
+console.log(num1 + num2);
+
+
+// ТИПИЗИЦИЯ ОБЪЕКТОВ И ДЕСТРУКТУРИЗАЦИЯ
+const userData7 = {
+  isBirthdayData: true,
+  ageData: 40,
+  userName3: 'Serge',
+}
+
+const createError7 = (msg: string) => {
+  throw new Error(msg); 
+};
+
+function logBirthMsg7({isBirthdayData, userName3, ageData }: {isBirthdayData: boolean, userName3: string, ageData: number}): string {
+  if (isBirthdayData) {
+    return `Congrats ${userName3.toUpperCase()}, age: ${ageData + 1}`;
+  } else  {
+    return createError7('Error');
+  }
+}
+
+console.log(logBirthMsg7(userData7));
+
+// ТИПИЗАЦИЯ МАССИВОВ
+
+const departments: string[] = ['dev', 'design', 'marketing'];
+const department = departments[0];
+// departments.push(5); // error
+
+const report = departments.filter(d => d !== 'dev').map(d => `${d} - done`)
+
+
+const nums10: number[] = [10,12,14,44];
+const nums11: any[] = [1,4,7, true, 'test'];
+const nums12: number[][] = [[3,5,6], [3,5,8]];
+
+// destruct
+const [first] = report;
+console.log(first);
