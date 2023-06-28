@@ -91,3 +91,16 @@ function makeOrder(order: PossibleOrders) {
     console.log(order.callerNumber);
   }
 }
+
+// Опишите перегрузку для заданной функции.
+function head(value: string): string;
+function head(value: number[]): number;
+function head(value: boolean[]): boolean;
+function head(value: any): any {
+  return value[0];
+}
+
+const x = head('ssd');
+const y = head([1, 2, 3]);
+// Какое количество перегрузок доступно для одной функции?
+// - Неограниченное количество

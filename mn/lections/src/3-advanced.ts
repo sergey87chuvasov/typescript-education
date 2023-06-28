@@ -166,3 +166,72 @@ const user4 = {
 function myClickHandler(this: HTMLButtonElement, event: Event) {
   this.disabled = true;
 }
+
+// Перегрузка функций
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: any, b: any): any {
+  return a + b;
+}
+
+add(5, 5);
+add('test', 'page');
+
+//
+type asyncCb = (res: number) => number;
+function asyncSum(a: number, b: number): Promise<number>;
+function asyncSum(a: number, b: number, cb: asyncCb): number;
+function asyncSum(a: number, b: number, cb?: asyncCb): any {
+  const result = a + b;
+  if (cb) {
+    return cb(result);
+  }
+
+  return Promise.resolve(result);
+}
+
+asyncSum(1, 2);
+
+// РЕКУРСИВНЫЕ ТИПЫ
+type NestedNumbers = number | NestedNumbers[];
+
+const nums: NestedNumbers = [1, 2, [1, 2, [1, 2, 3]]];
+nums.push(1);
+nums.push(1, [2, 3]);
+
+// JSON
+type JSONPrimitive = string | number | boolean | null;
+type JSONObject = { [k: string]: JSONValue };
+type JSONArray = JSONValue[];
+type JSONValue = JSONPrimitive | JSONObject | JSONArray;
+
+function isJSON(arg: JSONValue) {}
+
+isJSON('hi');
+isJSON(1);
+isJSON({ a: [123], v: { x: 1 } });
+isJSON([1, { x: '' }]);
+
+// ОПЕРАТОР !
+let word: string | null = null;
+const num = 10;
+if (num > 5) {
+  word = 'abc';
+}
+
+// ! - мы точно тебя не обманим - эта штука со значением
+console.log(word!.toLowerCase());
+
+function printName(name?: string) {
+  const fullName: string = name!;
+}
+
+interface Person2 {
+  name: string;
+  age: number;
+  sex: 'female' | 'male';
+}
+
+function printName2(person?: Person2) {
+  console.log(person!.name);
+}
